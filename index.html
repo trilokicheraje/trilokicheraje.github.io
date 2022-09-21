@@ -51,7 +51,7 @@
 		"pdfs/trilokicheraje018.pdf"
 	];
 	function PreviousClicked() {
-		if(currentDoc >= 0){
+		if(currentDoc > 0){
 			currentDoc = currentDoc-1;
 			LoadPdfFromUrl(docList[currentDoc])
 		}
