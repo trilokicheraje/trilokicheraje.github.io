@@ -57,8 +57,8 @@
             var pdf_container = document.getElementById("pdf_container");
 	    pdf_container.innerHTML = '';
             pdf_container.style.display = "block";
-            //pdf_container.style.height = IsMobile() ? "1200px" : "820px";
- 	    pdf_container.style.height = "75%";
+            pdf_container.style.height = IsMobile() ? "90vh" : "70vh";
+ 	    
             //Loop and render all pages.
             for (var i = 1; i <= pdfDoc.numPages; i++) {
                 RenderPage(pdf_container, i);
