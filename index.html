@@ -65,6 +65,8 @@
 	};
     function LoadPdfFromUrl(url) {
         //Read PDF from URL.
+	var pdf_container = document.getElementById("pdf_container");
+	pdf_container.innerHTML = '';
         pdfjsLib.getDocument(url).promise.then(function (pdfDoc_) {
             pdfDoc = pdfDoc_;
  
