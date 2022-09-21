@@ -80,7 +80,11 @@
             for (var i = 1; i <= pdfDoc.numPages; i++) {
                 RenderPage(pdf_container, i);
             }
-        });
+        },
+	function(err) { 
+		var pdf_container = document.getElementById("pdf_container");
+		pdf_container.innerHTML = 'Error Loading file';
+	} );
     };
     function RenderPage(pdf_container, num) {
         pdfDoc.getPage(num).then(function (page) {
