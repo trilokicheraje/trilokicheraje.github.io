@@ -4,13 +4,13 @@
     <title>त्रिलोकीचे राजे</title>
 	<style>
 	  main {
-		font-size: 100%;
+		font-size: 2em;
 	  }
 
 	  
 	  @media (min-width: 600px) {
 		main {
-		  font-size: 300%;
+		  font-size: 5em;
 		}
 
 		}
@@ -26,6 +26,25 @@
     var pdfDoc = null;
     var scale = 1; //Set Scale for Zoom.
     var resolution = IsMobile() ? 1.5 : 1; //Set Resolution as per Desktop and Mobile.
+	var currentDoc = 0;
+	var docList = [
+		"pdfs/trilokicheraje001.pdf",
+		"pdfs/trilokicheraje002.pdf",
+		"pdfs/trilokicheraje003.pdf"
+	];
+	function PreviousClicked() {
+		if(currentDoc >= 0){
+			currentDoc = currentDoc-1;
+			LoadPdfFromUrl(docList[currentDoc])
+		}
+	};
+	
+	function NextClicked() {
+		if(currentDoc < docList.length-1){
+			currentDoc = currentDoc+1;
+			LoadPdfFromUrl(docList[currentDoc])
+		}
+	};
     function LoadPdfFromUrl(url) {
         //Read PDF from URL.
         pdfjsLib.getDocument(url).promise.then(function (pdfDoc_) {
@@ -75,20 +94,24 @@
         var r = new RegExp("Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini");
         return r.test(navigator.userAgent);
     }
+	
+	function LoadFirstDocument() {
+		LoadPdfFromUrl(docList[currentDoc])
+		//LoadPdfFromUrl('pdfs/trilokicheraje001.pdf')
+	}
 </script>
 	</head>
-  <body>
+  <body onload="LoadFirstDocument()">
   <main>
-  <div>
-	  <h1>त्रिलोकीचे राजे</h1>
+  <div >
+	  <h1 style="text-align:center;">त्रिलोकीचे राजे</h1>
 	  
-	  <object data="pdfs/trilokicheraje001.pdf" type="application/pdf" width="100%" height="600px">
-		<p>Your web browser doesn't have a PDF plugin.
-  Instead you can click here to download <a href="pdfs/trilokicheraje001.pdf" >त्रिलोकीचे राजे - भाग १</a>
-  </p>
-  </object>
+	  <div style="padding: 10px">
+		  <input type="button"  id="btnPrevious" style="float: left;" value="Previous" onclick="PreviousClicked()" />
+		  
+		  <input type="button" id="btnNext" style="float: right;" value="Next" onclick="NextClicked()" />
+	  </div>
 	  
-	  <input type="button" id="btnPreview" value="Preview PDF Document" onclick="LoadPdfFromUrl('pdfs/trilokicheraje001.pdf')" />
 <hr />
 <div id="pdf_container"></div>
 
