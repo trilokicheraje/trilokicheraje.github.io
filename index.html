@@ -66,7 +66,7 @@
     function LoadPdfFromUrl(url) {
         //Read PDF from URL.
 	var pdf_container = document.getElementById("pdf_container");
-	pdf_container.innerHTML = '';
+	pdf_container.innerHTML = 'Loading...';
         pdfjsLib.getDocument(url).promise.then(function (pdfDoc_) {
             pdfDoc = pdfDoc_;
  
