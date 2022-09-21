@@ -3,6 +3,9 @@
   <head>
     <title>त्रिलोकीचे राजे</title>
 	<style>
+	  html, body {
+	  	height: 100%;
+	  }
 	  main {
 		font-size: 1em;
 	  }
@@ -54,8 +57,8 @@
             var pdf_container = document.getElementById("pdf_container");
 	    pdf_container.innerHTML = '';
             pdf_container.style.display = "block";
-            pdf_container.style.height = IsMobile() ? "1200px" : "820px";
- 
+            //pdf_container.style.height = IsMobile() ? "1200px" : "820px";
+ 	    pdf_container.style.height = "75%";
             //Loop and render all pages.
             for (var i = 1; i <= pdfDoc.numPages; i++) {
                 RenderPage(pdf_container, i);
