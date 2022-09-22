@@ -31,37 +31,40 @@
     var resolution = IsMobile() ? 1.5 : 1; //Set Resolution as per Desktop and Mobile.
 	var currentDoc = 0;
 	var docList = [
-		"pdfs/trilokicheraje001.pdf",
-		"pdfs/trilokicheraje002.pdf",
-		"pdfs/trilokicheraje003.pdf",
-		"pdfs/trilokicheraje004.pdf",
-		"pdfs/trilokicheraje005.pdf",
-		"pdfs/trilokicheraje006.pdf",
-		"pdfs/trilokicheraje007.pdf",
-		"pdfs/trilokicheraje008.pdf",
-		"pdfs/trilokicheraje009.pdf",
-		"pdfs/trilokicheraje010.pdf",
-		"pdfs/trilokicheraje011.pdf",
-		"pdfs/trilokicheraje012.pdf",
-		"pdfs/trilokicheraje013.pdf",
-		"pdfs/trilokicheraje014.pdf",
-		"pdfs/trilokicheraje015.pdf",
-		"pdfs/trilokicheraje016.pdf",
-		"pdfs/trilokicheraje017.pdf",
-		"pdfs/trilokicheraje018.pdf"
+		{name:"भाग - १", doc: "pdfs/trilokicheraje001.pdf"},
+		{name:"भाग - २", doc: "pdfs/trilokicheraje002.pdf"},
+		{name:"भाग - ३", doc: "pdfs/trilokicheraje003.pdf"},
+		{name:"भाग - ४", doc: "pdfs/trilokicheraje004.pdf"},
+		{name:"भाग - ५", doc: "pdfs/trilokicheraje005.pdf"},
+		{name:"भाग - ६", doc: "pdfs/trilokicheraje006.pdf"},
+		{name:"भाग - ७", doc: "pdfs/trilokicheraje007.pdf"},
+		{name:"भाग - ८", doc: "pdfs/trilokicheraje008.pdf"},
+		{name:"भाग - ९", doc: "pdfs/trilokicheraje009.pdf"},
+		{name:"भाग - १०", doc: "pdfs/trilokicheraje010.pdf"},
+		{name:"भाग - ११", doc: "pdfs/trilokicheraje011.pdf"},
+		{name:"भाग - १२", doc: "pdfs/trilokicheraje012.pdf"},
+		{name:"भाग - १३", doc: "pdfs/trilokicheraje013.pdf"},
+		{name:"भाग - १४", doc: "pdfs/trilokicheraje014.pdf"},
+		{name:"भाग - १५", doc: "pdfs/trilokicheraje015.pdf"},
+		{name:"भाग - १६", doc: "pdfs/trilokicheraje016.pdf"},
+		{name:"भाग - १७", doc: "pdfs/trilokicheraje017.pdf"},
+		{name:"भाग - १८", doc: "pdfs/trilokicheraje018.pdf"},
+		{name:"भाग - १९", doc: "pdfs/trilokicheraje018.pdf"}
 	];
 	function PreviousClicked() {
 		if(currentDoc > 0){
 			currentDoc = currentDoc-1;
-			LoadPdfFromUrl(docList[currentDoc])
+			LoadPdfFromUrl(docList[currentDoc].doc)
 		}
+		UpdateButtons();
 	};
 	
 	function NextClicked() {
 		if(currentDoc < docList.length-1){
 			currentDoc = currentDoc+1;
-			LoadPdfFromUrl(docList[currentDoc])
+			LoadPdfFromUrl(docList[currentDoc].doc)
 		}
+		UpdateButtons();
 	};
     function LoadPdfFromUrl(url) {
         //Read PDF from URL.
@@ -120,8 +123,29 @@
         return r.test(navigator.userAgent);
     }
 	
+	function UpdateButtons(){
+		var prvBtn = document.getElementById("btnPrevious");
+		var nxtBtn = document.getElementById("btnNext");
+		var nmSpn = document.getElementById("docName");
+		nmSpn.textContent = docList[currentDoc].name;
+		if(currentDoc ==0){
+			prvBtn.style.visibility = "hidden";
+		}
+		else{
+			prvBtn.style.visibility = "visible";
+		}
+		
+		if(currentDoc == docList.length-1){
+			nxtBtn.style.visibility = "hidden";
+		}
+		else{
+			nxtBtn.style.visibility = "visible";
+		}
+	}
+	
 	function LoadFirstDocument() {
-		LoadPdfFromUrl(docList[currentDoc])
+		LoadPdfFromUrl(docList[currentDoc].doc);
+		UpdateButtons();
 		//LoadPdfFromUrl('pdfs/trilokicheraje001.pdf')
 	}
 </script>
@@ -131,10 +155,10 @@
   <div >
 	  <h1 style="text-align:center;">त्रिलोकीचे राजे</h1>
 	  
-	  <div style="padding: 40px">
-		  <input type="button"  id="btnPrevious" style="float: left; font-size: 1em;" value="Previous" onclick="PreviousClicked()" />
-		  
-		  <input type="button" id="btnNext" style="float: right; font-size: 1em;" value="Next" onclick="NextClicked()" />
+	  <div style="padding-bottom: 40px">
+		  <div style="width: 33%; float: left; font-size: 1em; "><input type="button"  id="btnPrevious" style="font-size: 1em;" value="Previous" onclick="PreviousClicked()" /></div>
+		  <div style="width: 33%; float: left; font-size: 1.2em; text-align: center"><span id="docName" ><span></div>
+		  <div style="width: 33%; float: right; font-size: 1em;"><input type="button" id="btnNext" style="float: right; font-size: 1em;" value="Next" onclick="NextClicked()" /></div>
 	  </div>
 	  
 <hr />
