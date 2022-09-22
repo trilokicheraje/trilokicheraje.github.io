@@ -129,17 +129,19 @@
 		var nmSpn = document.getElementById("docName");
 		nmSpn.textContent = docList[currentDoc].name;
 		if(currentDoc ==0){
-			prvBtn.style.visibility = "hidden";
+			prvBtn.disabled = true;
 		}
 		else{
-			prvBtn.style.visibility = "visible";
+			prvBtn.disabled = false;
 		}
 		
 		if(currentDoc == docList.length-1){
-			nxtBtn.style.visibility = "hidden";
+			nxtBtn.disabled = true;
+			nxtBtn.value = "Coming soon..."
 		}
 		else{
-			nxtBtn.style.visibility = "visible";
+			nxtBtn.disabled = false;
+			nxtBtn.value = "Next"
 		}
 	}
 	
